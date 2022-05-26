@@ -1,0 +1,87 @@
+{% extends 'base/base.html'%}
+{% load static %}
+{% block content%}
+
+
+<div class="table-content">
+
+
+
+    <form action="" method="POST">
+
+        <table class="table">
+            <thead>
+                <tr>
+
+                <th scope="col">Name</th>
+                <th scope="col">Answer</th>
+                <th scope="col">Status</th>
+                <th scope="col">Allow to be completed</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for category in categories%}
+                    <tr>
+                    <td>{{category.name}}</td>
+                    <td>
+                        <textarea class="text-custom" name="{{category.name}}-textarea"  rows="3">{{category.default_text}}</textarea>
+                    </td>
+                    
+                    <td>
+                        <form name = "form" action="" method = "POST" >
+                            {% csrf_token %}
+                            <div class="status-wrapper">
+                            {% if category.active%}
+                            <span class="custom-status opened"><p>Activated</p></span>
+                            <input type="submit" name="{{category.name}}" class="btn btn-outline-danger btn-sm" value="Deactivate">
+                            {% else %}
+                            <span class="custom-status closed"><p>Deactivated</p></span>
+                            <input type="submit" name="{{category.name}}" class="btn btn-outline-success btn-sm" value="Activate">
+                            {% endif %}
+                            </div>
+                        </form>
+                    </td>
+
+
+                    <td>
+                        <form name = "form" action="" method = "POST" >
+                            {% csrf_token %}
+                            <div class="status-wrapper">
+                            {% if category.allow_complete%}
+                            <span class="custom-status opened"><p>Allowed</p></span>
+                            <input type="submit" name="{{category.name}}" class="btn btn-outline-danger btn-sm" value="Not allow">
+                            {% else %}
+                            <span class="custom-status closed"><p>Not Allowed</p></span>
+                            <input type="submit" name="{{category.name}}" class="btn btn-outline-success btn-sm" value="Allow">
+                            {% endif %}
+                            </div>
+                        </form>
+                    </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <div class="bottom-table">
+            <div class="save-wrapper">
+                <input type="submit" class="btn btn-outline-primary" value="Save">
+            </div>
+        <div>
+
+    </form>
+
+
+  </form>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

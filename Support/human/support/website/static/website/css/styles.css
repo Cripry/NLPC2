@@ -1,0 +1,104 @@
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+body {
+
+  
+    min-height: 100vh;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    width: 5px;
+    background: #f5f5f5;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    width: 1em;
+    background-color: #ddd;
+    outline: 1px solid slategrey;
+    border-radius: 1rem;
+  }
+  
+  .text-small {
+    font-size: 0.9rem;
+  }
+  
+  .messages-box,
+  .chat-box {
+    height: 70vh;
+    overflow-y: scroll;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  input::placeholder {
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+
+
+
+
+
+.table-content{
+  width: 70%;
+  margin: 5rem auto;
+}
+
+
+.status-wrapper{
+  display: flex;
+  flex-direction: row
+}
+
+.custom-status{
+
+  text-align: center;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 7rem;
+}
+
+.custom-status p{
+  margin: 0;
+  padding: 0;
+  font-weight: 100;
+}
+
+.column-buttons{
+  max-width: 8rem !important;
+}
+
+
+.opened{
+  color: #28a745;
+}
+
+.closed{
+  color: #dc3545;
+}
+
+.text-custom{
+  resize: None;
+  width: 90%;
+
+}
+
+.bottom-table{
+  display: flex;
+  flex-direction:row;
+  justify-content: end;
+  align-items: end;
+}

@@ -1,0 +1,90 @@
+{% extends 'base/base.html'%}
+{% load static %}
+{% block content%}
+
+
+<div class="table-content">
+
+
+  <form action="" method="POST">
+    <table class="table">
+      <thead>
+        <tr>
+
+          <th scope="col">Status</th>
+          <th scope="col">Moldovan side</th>
+          <th scope="col">Ukrainian side</th>
+          <th scope="col">Flow</th>
+          <th scope="col">Text</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {% for custom in customs %}
+        <form name="button-form" action="" method="POST">
+          {% csrf_token %}
+        <tr>
+          <th scope="col  column-buttons">
+            <form name = "form" action="" method = "POST" >
+              {% csrf_token %}
+              <div class="status-wrapper">
+                {% if custom.opened%}
+                <span class="custom-status opened"><p>Opened</p></span>
+                <input type="submit" name="{{custom.md_name}}" class="btn btn-outline-danger btn-sm" value="Close">
+                {% else %}
+                <span class="custom-status closed"><p>Closed</p></span>
+                <input type="submit" name="{{custom.md_name}}" class="btn btn-outline-success btn-sm" value="Open">
+                {% endif %}
+              </div>
+            </form>
+
+          </th>
+          <td><label name="md_name" value="{{custom.md_name}}">{{custom.md_name}}</label></td>
+          <td><label name="ua_name" value="{{custom.ua_name}}">{{custom.ua_name}}</label></td>
+          
+          <td>
+            <div class="situation-wrapper">
+                  <select class="browser-default custom-select" name="{{custom.md_name}}-flow">
+                    <option value="{{custom.flow}}"  selected>{{custom.flow}}</option>
+
+                    {% for flow_status in FLOW_CHOICES%}
+
+                      {% if flow_status != custom.flow %}
+                      <option  value="{{flow_status}}">{{flow_status}}</option>
+                      {% endif %}
+                    {% endfor%}
+
+                  </select>
+            </div>
+          </td>
+
+          <td>
+            <textarea class="text-custom" name="{{custom.md_name}}-textarea"  rows="2">{{custom.complementary_text}}</textarea>
+            
+          </td>
+        </tr>
+
+        </form>
+        {% endfor %}
+
+        
+      </tbody>
+    </table>
+
+
+    <div class="bottom-table">
+      <div class="save-wrapper">
+        <input type="submit" class="btn btn-outline-primary" value="Save">
+      </div>
+    <div>
+  </form>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
